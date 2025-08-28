@@ -78,4 +78,19 @@ def update_player(update_payload: UpdatePlayer, player_id: Optional[int] = None,
 
     return updated_player
 
+@app.delete("/delete", response_model=Player)
+def delete_player(player_id: Optional[int] = None, player_name: Optional[str] = None):
+    if player_id is None and player_name is None:
+        raise HTTPException(status_code=400, detail="Must provide either player_id or player_name to identify the player.")
+    if player_id is not None and player_name is not None:
+        raise HTTPException(status_code=400, detail="Cannot provide both player_id and player_name. Please use one.")
+
+    index = -1
+    if player_id is not None:
+        index = find_player_index_by_id(player_id)
+    else:
+        index = find_player_index_by_name(player_name)
+
+    return db.pop(index)
+
 
