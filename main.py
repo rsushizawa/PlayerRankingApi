@@ -30,9 +30,9 @@ next_id = 5
 
 @app.get("/players", response_model=List[Player])
 def get_players():
-    return db
+    return db[::-1]
 
-@app.post("/create", response_model=Player)
+@app.post("/create", response_model=Player, status_code=201)
 def create_player(player: CreatePlayer):
     global next_id
     new_player = Player(id=next_id, **player.model_dump())
