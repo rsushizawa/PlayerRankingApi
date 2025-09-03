@@ -1,6 +1,6 @@
 from fastapi import FastAPI, HTTPException
 from typing import List,Optional
-from model import Player, UpdatePlayer, CreatePlayer
+from app.model import Player, UpdatePlayer, CreatePlayer
 from bisect import bisect_left
 
 app = FastAPI()

@@ -1,7 +1,7 @@
 import pytest
 from fastapi.testclient import TestClient
 
-from main import app, db, Player, next_id as main_next_id
+from app.main import app, db, Player, next_id as main_next_id
 
 client = TestClient(app)
 
